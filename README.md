@@ -12,17 +12,21 @@ This project have been done between June.2nd/2025 - June.11th/2025
 
 # Packages and tech
 
-I will be using entur api for my ruter applications \* This is for public transport
-// Link to be added
+I will be using entur api for my ruter applications 
+   * This is for public transport
+   // Link to be added
 
-I will be using Supabase as my database provider \* This will be for authentication
-// Link to be added
+I will be using Supabase as my database provider 
+   * This will be for authentication
+   // Link to be added
 
-For testing I most likely be using Jest \* This is a well known testing library
-// Link to be added
+For testing I most likely be using Jest 
+   * This is a well known testing library
+   // Link to be added
 
-For encrypting/Hashing passwords and sessions I will be using bcrypt \* An easy way of encryption and comparing for validation
-// Link to be added
+For encrypting/Hashing passwords and sessions I will be using bcrypt 
+   * An easy way of encryption and comparing for validation
+   // Link to be added
 
 # How to view my project.
 
@@ -45,11 +49,6 @@ For encrypting/Hashing passwords and sessions I will be using bcrypt \* An easy 
 
 7. Write "npm run dev" to start a localhost which will run this project
    ^^^Make sure in root folder
-
-# Database URL and Key
-
-NEXT_PUBLIC_SUPABASE_URL=https://rbbuuleeidshqasxpiii.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJiYnV1bGVlaWRzaHFhc3hwaWlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NDUzMjIsImV4cCI6MjA2NDQyMTMyMn0.Jiv4_YtPaXdTXtTKpxxuAmltt3wLMmkgatAZA-20EYU
 
 # Sources:
 
