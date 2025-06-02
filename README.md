@@ -6,7 +6,7 @@ If you see this "-..-" symbol it means "same as above"
 
 # Intro
 
-Here I be using everything I have learned from being an apprentice at the University of Oslo to create a mini project for my fagprøve.
+In this project I be using everything I have learned from being an apprentice at the University of Oslo to create a mini project for my fagprøve.
 I have been an apprentice since Aug.14th/2023 and will end my time here by Aug.13th/2025
 This project have been done between June.2nd/2025 - June.11th/2025
 
