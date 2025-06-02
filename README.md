@@ -3,7 +3,9 @@
 # Intro
 
 In this project I be using everything I have learned from being an apprentice at the University of Oslo to create a mini project for my fagprøve.
+
 I have been an apprentice since Aug.14th/2023 and will end my time here by Aug.13th/2025
+
 This project have been done between June.2nd/2025 - June.11th/2025
 
 # Packages and tech
@@ -20,7 +22,7 @@ I will be using Supabase as my database provider
    * This will be for authentication
    // Link to be added
 
-For testing I most likely be using Jest 
+For testing I most likely will be using Jest 
    * This is a well known testing library
    // Link to be added
 
