@@ -37,17 +37,12 @@ For encrypting/Hashing passwords and sessions I will be using bcrypt
     I prefer the integrated terminal in vscode
 
 3. Write "npm i"
-
    This will install all required packages
-4. If you have done the above and it is not working try "npm ci"
 
+5. If you have done the above and it is not working try "npm ci"
    "ci" stands for "clean install" this will reinstall all packages and remove possible duplicates
-5. Create a ".env.local" file in the root directory
 
-6. Copy my database URL and database public key
-   You can find these at the bottom of readme-above sources
-
-7. Write "npm run dev" to start a localhost which will run this project
+6. Write "npm run dev" to start a localhost which will run this project
    ^^^Make sure in root folder
 
 # Sources:
