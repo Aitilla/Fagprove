@@ -1,9 +1,5 @@
 # This is the repo for my fagprøve within It-development
 
-# Annotations\*
-
-If you see this "-..-" symbol it means "same as above"
-
 # Intro
 
 In this project I be using everything I have learned from being an apprentice at the University of Oslo to create a mini project for my fagprøve.
@@ -11,6 +7,10 @@ I have been an apprentice since Aug.14th/2023 and will end my time here by Aug.1
 This project have been done between June.2nd/2025 - June.11th/2025
 
 # Packages and tech
+
+This project uses node and npm, which are required to run the application
+
+I am using Nextjs as my framework
 
 I will be using entur api for my ruter applications 
    * This is for public transport
@@ -47,9 +47,9 @@ For encrypting/Hashing passwords and sessions I will be using bcrypt
 
 # Sources:
 
-    Supabase documentation
-    bcrypt -..-
-    Entur -..-
-    Nextjs -..-
-    Jest -..-
-    Rubix cube as rubber ducky :D
+   Supabase documentation
+   bcrypt -..-
+   Entur -..-
+   Nextjs -..-
+   Jest -..-
+   Rubix cube as rubber ducky :D
