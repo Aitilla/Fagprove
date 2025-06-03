@@ -1,0 +1,19 @@
+.hidden{
+    display: none;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+}
+
+.signing{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+}
