@@ -15,9 +15,8 @@ export default function RuterPage() {
   }, []);
 
   useEffect(() => { 
-    const bussLines = data?.data.map((x) => x.LineRef[0])
+    const bussLines = data?.data.map((x) => x.LineRef[0]).sort()
     console.log(bussLines)
-    const sortedBussLines = bussLines?.map((x) => {})
     console.log(loading);
     console.log(error);
   }, [data, loading, error]);
