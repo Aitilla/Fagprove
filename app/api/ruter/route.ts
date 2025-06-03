@@ -1,6 +1,5 @@
 import { parseStringPromise } from "xml2js";
 
-
 // et in URL is estimated time
 // sx is situational exchange
 const apiUrl = "https://api.entur.io/realtime/v1/rest/et?datasetId=RUT";
