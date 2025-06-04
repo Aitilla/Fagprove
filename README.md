@@ -33,25 +33,26 @@ For encrypting/Hashing passwords and sessions I will be using bcrypt
 # How to view my project.
 
 1. Clone project
-   I prefer cloning via ssh
+   * I prefer cloning via ssh
 
 2. Go to root folder of the project in your preferred terminal
-    I prefer the integrated terminal in vscode
+    * I prefer the integrated terminal in vscode
 
 3. Write "npm i"
-   This will install all required packages
+   * This will install all required packages
 
 5. If you have done the above and it is not working try "npm ci"
-   "ci" stands for "clean install" this will reinstall all packages and remove possible duplicates
+   * "ci" stands for "clean install" this will reinstall all packages and remove possible duplicates
 
 6. Write "npm run dev" to start a localhost which will run this project
-   ^^^Make sure in root folder
+   * ^^^Make sure in root folder
 
 # Sources:
 
-   Supabase documentation
-   bcrypt -..-
-   Entur -..-
-   Nextjs -..-
-   Jest -..-
-   Rubix cube as rubber ducky :D
+   * Supabase documentation
+   * bcrypt -..-
+   * Entur -..-
+   * Nextjs -..-
+   * xml2js -..-
+   * Jest -..-
+   * Rubix cube as rubber ducky :D
