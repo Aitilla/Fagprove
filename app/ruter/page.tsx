@@ -3,7 +3,7 @@
 import styles from "./ruter.module.css";
 import { useEffect, useState } from "react";
 import { useSimpleFetch } from "../components/hooks/useSimpleFetch";
-import { setOption, getUser } from "./actions";
+import { setOption } from "./actions";
 
 export default function RuterPage() {
   const { data, loading, error, refresh } = useSimpleFetch<{
@@ -34,24 +34,24 @@ export default function RuterPage() {
   const username: string = "testBruker";
 
   async function handleAction(formData: FormData) {
-    const result = await setOption(formData);
-    if (!result.success) {
+    const response = await setOption(formData, username);
+    if (!response.success) {
       prompt("Invalid input on either buss or station");
     } else {
       prompt("Succesfull, buss and station added to user");
     }
   }
 
-  async function getUserSetting(username: string) {
-    const result = await getUser(username);
-    if (!result.success) {
-      prompt("Please try again later");
-    } else {
-      setLineNumber(result.lineRef);
-      setStation(result.station);
-      setDirection(result.direction);
-    }
-  }
+//   async function getUserSetting(username: string) {
+//     const result = await getUser(username);
+//     if (!result.success) {
+//       prompt("Please try again later");
+//     } else {
+//       setLineNumber(result.lineRef);
+//       setStation(result.station);
+//       setDirection(result.direction);
+//     }
+//   }
 
   useEffect(() => {
     const int = setInterval(refresh, 1000 * 1000);
@@ -90,11 +90,11 @@ export default function RuterPage() {
       </div>
       <div className={styles.inputContainer}>
         <form action={handleAction}>
-          <label htmlFor="LineRef">Choose a bussline</label>
+          <label htmlFor="lineNumber">Choose a bussline</label>
           <input
             type="number"
             placeholder="Search"
-            name="LineRef"
+            name="lineNumber"
             list="bussLine"
           />
           <datalist id="bussLine">

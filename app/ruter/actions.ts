@@ -1,20 +1,69 @@
+import { supabaseAdmin } from "../lib/supabase";
+
 export async function setOption(
-  formData: FormData
-): Promise<{ success: boolean }> {
+  formData: FormData,
+  username: string
+): Promise<{ success: boolean; lineRef: number; stationName: string }> {
   const input = {
     lineNumber: formData.get("lineNumber") as string,
     stationName: formData.get("stationName") as string,
   };
 
   if (!input.lineNumber || !input.stationName) {
-    return { success: false };
+    return { success: false, lineRef: NaN, stationName: "" };
   }
 
-  return { success: true };
+  const { data: routes, error } = await supabaseAdmin
+    .from("enturRoutes")
+    .insert({
+      user: username,
+      lineRef: input.lineNumber,
+      stationName: input.stationName,
+    });
+
+  if (error) {
+    console.log(error);
+    return { success: false, lineRef: NaN, stationName: "" };
+  }
+
+  const userRoutes = await getUser(username);
+  if (!userRoutes.response) {
+    return { success: false, lineRef: NaN, stationName: "" };
+  }
+
+  return { 
+    success: true,
+    lineRef: userRoutes.lineRef,
+    stationName: userRoutes.stationName,
+  };
 }
 
-export async function getUser(
-  username: string
-): Promise<{ success: boolean; lineRef: number; station: string; direction: string }> {
-  return { success: true, lineRef: 69, station: "Krokstien", direction: "Tveita T" };
+async function getUser(username: string): Promise<{
+  response: boolean;
+  lineRef: number;
+  stationName: string;
+}> {
+  const { data: userRoutes, error } = await supabaseAdmin
+    .from("enturRoutes")
+    .select("*")
+    .eq("user", username);
+
+  if (error) {
+    console.log(error);
+    return { response: false, lineRef: NaN, stationName: "" };
+  }
+
+  const userRoute = userRoutes?.[0];
+  if (!userRoute) {
+    console.log("feil userROute");
+    return { response: false, lineRef: NaN, stationName: "" };
+  }
+
+  console.log(userRoute);
+
+  return {
+    response: true,
+    lineRef: 69,
+    stationName: "Krokstien",
+  };
 }
