@@ -3,7 +3,7 @@
 import styles from "./ruter.module.css";
 import { useEffect, useState } from "react";
 import { useSimpleFetch } from "../components/hooks/useSimpleFetch";
-import { setOption } from "./actions";
+import { setOption, getUserRoutes } from "./actions";
 
 export default function RuterPage() {
   const { data, loading, error, refresh } = useSimpleFetch<{

@@ -3,14 +3,14 @@ import { supabaseAdmin } from "../lib/supabase";
 export async function setOption(
   formData: FormData,
   username: string
-): Promise<{ success: boolean; lineRef: number; stationName: string }> {
+): Promise<{ success: boolean;}> {
   const input = {
     lineNumber: formData.get("lineNumber") as string,
     stationName: formData.get("stationName") as string,
   };
 
   if (!input.lineNumber || !input.stationName) {
-    return { success: false, lineRef: NaN, stationName: "" };
+    return { success: false};
   }
 
   const { data: routes, error } = await supabaseAdmin
@@ -23,22 +23,13 @@ export async function setOption(
 
   if (error) {
     console.log(error);
-    return { success: false, lineRef: NaN, stationName: "" };
+    return { success: false};
   }
 
-  const userRoutes = await getUser(username);
-  if (!userRoutes.response) {
-    return { success: false, lineRef: NaN, stationName: "" };
-  }
-
-  return { 
-    success: true,
-    lineRef: userRoutes.lineRef,
-    stationName: userRoutes.stationName,
-  };
+  return {success: true,}
 }
 
-async function getUser(username: string): Promise<{
+export async function getUserRoutes(username: string): Promise<{
   response: boolean;
   lineRef: number;
   stationName: string;
