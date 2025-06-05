@@ -22,10 +22,6 @@ I will be using Supabase as my database provider
    * This will be for authentication
    // Link to be added
 
-For testing I most likely will be using Jest 
-   * This is a well known testing library
-   // Link to be added
-
 For encrypting/Hashing passwords and sessions I will be using bcrypt 
    * An easy way of encryption and comparing for validation
    // Link to be added

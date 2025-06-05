@@ -50,7 +50,7 @@ export async function login(formData: FormData): Promise<{ success: number }> {
     path: "/",
   });
 
-  return { success: 1 }; // 1 means successful "LOGIN"
+  return { success: 1 }; // 1 means successful login
 }
 
 export async function signup(formData: FormData): Promise<{ success: number }> {
@@ -68,5 +68,5 @@ export async function signup(formData: FormData): Promise<{ success: number }> {
     console.log(error);
     return { success: 3 };
   }
-  return { success: 2 }; // 2 means succesfull "SINGUP"
+  return { success: 2 }; // 2 means succesfull singup
 }
