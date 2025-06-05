@@ -31,10 +31,10 @@ export default function RuterPage() {
   const [station, setStation] = useState<string>("Krokstien");
   const [direction, setDirection] = useState<string>("Tveita T");
   const lineRef: string = `RUT:Line:${lineNumber}`;
-  const username: string = "testBruker";
+
 
   async function handleAction(formData: FormData) {
-    const response = await setOption(formData, username);
+    const response = await setOption(formData);
     if (!response.success) {
       prompt("Invalid input on either buss or station");
     } else {
@@ -42,13 +42,12 @@ export default function RuterPage() {
     }
   }
 
-  async function getRoutes() {
-    const routes = await getUserRoutes(username);
-    if (!routes.success) {
-      console.log("something went wrong");
-    }
-  }
-  getRoutes();
+  // async function getRoutes() {
+  //   const routes = await getUserRoutes();
+  //   if (!routes.success) {
+  //     console.log("something went wrong");
+  //   }
+  // }
 
   //   async function getUserSetting(username: string) {
   //     const result = await getUser(username);

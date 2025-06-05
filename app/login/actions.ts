@@ -1,6 +1,8 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { encrypt, verify } from "../lib/encrypt";
+import { createSession } from "../lib/session";
 import { supabaseAdmin, supabase } from "../lib/supabase";
 
 export async function auth(
@@ -36,6 +38,17 @@ export async function login(formData: FormData): Promise<{ success: number }> {
   const isValid = await verify(input.password, user.password);
   if (!isValid) return { success: 3 };
   console.log(isValid);
+
+  const { sessionID, expiresAt } = await createSession(user.user_id);
+
+  const cookieStore = await cookies();
+  cookieStore.set("session", sessionID, {
+    httpOnly: true,
+    secure: true,
+    expires: expiresAt,
+    sameSite: "lax",
+    path: "/",
+  });
 
   return { success: 1 }; // 1 means successful "LOGIN"
 }
