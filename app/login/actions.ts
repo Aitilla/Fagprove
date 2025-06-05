@@ -59,7 +59,7 @@ export async function signup(formData: FormData): Promise<{ success: number }> {
     username: formData.get("username") as string,
     password: await encrypt(formData.get("password") as string),
   };
-  const { data: users, error } = await supabase.from("users").insert({
+  const { error } = await supabase.from("users").insert({
     email: input.email,
     username: input.username,
     password: input.password,

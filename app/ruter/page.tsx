@@ -3,7 +3,7 @@
 import styles from "./ruter.module.css";
 import { useEffect, useState } from "react";
 import { useSimpleFetch } from "../components/hooks/useSimpleFetch";
-import { setOption, getUserRoutes } from "./actions";
+import { setOption } from "./actions";
 
 export default function RuterPage() {
   const { data, loading, error, refresh } = useSimpleFetch<{
@@ -27,11 +27,10 @@ export default function RuterPage() {
     }[];
   }>("/api/ruter");
 
-  const [lineNumber, setLineNumber] = useState<number>(58);
-  const [station, setStation] = useState<string>("Krokstien");
-  const [direction, setDirection] = useState<string>("Tveita T");
+  const [lineNumber] = useState<number>(58);
+  const [station] = useState<string>("Krokstien");
+  const [direction] = useState<string>("Tveita T");
   const lineRef: string = `RUT:Line:${lineNumber}`;
-
 
   async function handleAction(formData: FormData) {
     const response = await setOption(formData);
@@ -66,10 +65,10 @@ export default function RuterPage() {
     return () => {
       clearInterval(int);
     };
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
-    const bussLines = data?.data.map((x) => x.LineRef[0]).sort();
+    // const bussLines = data?.data.map((x) => x.LineRef[0]).sort();
     const spesificBuss = data?.data.filter((x) => x.LineRef.includes(lineRef));
     const destination =
       spesificBuss?.[0].EstimatedCalls?.[0].EstimatedCall[1]
@@ -78,7 +77,7 @@ export default function RuterPage() {
     console.log(destination);
     console.log(loading);
     console.log(error);
-  }, [data, loading, error]);
+  }, [data, loading, error, lineRef]);
 
   return (
     <div className={styles.pageContainer}>

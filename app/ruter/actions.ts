@@ -22,7 +22,7 @@ export async function setOption(
   const userID = await validateSession(session.value);
   if (!userID) return { success: false };
 
-  const { data: routes, error } = await supabaseAdmin
+  const { error } = await supabaseAdmin
     .from("entur_routes")
     .insert({
       user_id: userID,

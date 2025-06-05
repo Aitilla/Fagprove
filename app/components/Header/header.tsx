@@ -9,7 +9,7 @@ export default function Header() {
     <div className="header">
       <button
         onClick={() => {
-          handleLogout;
+          handleLogout();
         }}
       >Logout</button>
     </div>
