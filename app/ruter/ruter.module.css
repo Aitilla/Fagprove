@@ -1,0 +1,24 @@
+.pageContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .monitor{
+    width: 70%;
+    border: 2px solid black;
+    margin: 20px 0;
+    h1{
+        text-align: center;
+    }
+  }
+  .inputContainer {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    form {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

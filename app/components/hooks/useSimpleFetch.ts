@@ -9,7 +9,7 @@ export function useSimpleFetch<T>(url: string) {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/ruter")
+    fetch(url)
       .then((res) => res.json())
       .then((res) => setData(res))
       .catch((error) => setError(error)) 
