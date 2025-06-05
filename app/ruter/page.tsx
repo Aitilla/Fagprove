@@ -42,16 +42,24 @@ export default function RuterPage() {
     }
   }
 
-//   async function getUserSetting(username: string) {
-//     const result = await getUser(username);
-//     if (!result.success) {
-//       prompt("Please try again later");
-//     } else {
-//       setLineNumber(result.lineRef);
-//       setStation(result.station);
-//       setDirection(result.direction);
-//     }
-//   }
+  async function getRoutes() {
+    const routes = await getUserRoutes(username);
+    if (!routes.success) {
+      console.log("something went wrong");
+    }
+  }
+  getRoutes();
+
+  //   async function getUserSetting(username: string) {
+  //     const result = await getUser(username);
+  //     if (!result.success) {
+  //       prompt("Please try again later");
+  //     } else {
+  //       setLineNumber(result.lineRef);
+  //       setStation(result.station);
+  //       setDirection(result.direction);
+  //     }
+  //   }
 
   useEffect(() => {
     const int = setInterval(refresh, 1000 * 1000);
@@ -65,7 +73,7 @@ export default function RuterPage() {
     const bussLines = data?.data.map((x) => x.LineRef[0]).sort();
     const spesificBuss = data?.data.filter((x) => x.LineRef.includes(lineRef));
     const destination =
-      spesificBuss?.[7].EstimatedCalls?.[0].EstimatedCall[1]
+      spesificBuss?.[0].EstimatedCalls?.[0].EstimatedCall[1]
         .DestinationDisplay[0];
     console.log(spesificBuss);
     console.log(destination);

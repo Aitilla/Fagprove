@@ -30,7 +30,7 @@ export async function setOption(
 }
 
 export async function getUserRoutes(username: string): Promise<{
-  response: boolean;
+  success: boolean;
   lineRef: number;
   stationName: string;
 }> {
@@ -41,19 +41,19 @@ export async function getUserRoutes(username: string): Promise<{
 
   if (error) {
     console.log(error);
-    return { response: false, lineRef: NaN, stationName: "" };
+    return { success: false, lineRef: NaN, stationName: "" };
   }
 
   const userRoute = userRoutes?.[0];
   if (!userRoute) {
     console.log("feil userROute");
-    return { response: false, lineRef: NaN, stationName: "" };
+    return { success: false, lineRef: NaN, stationName: "" };
   }
 
   console.log(userRoute);
 
   return {
-    response: true,
+    success: true,
     lineRef: 69,
     stationName: "Krokstien",
   };
