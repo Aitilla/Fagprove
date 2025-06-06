@@ -3,7 +3,7 @@
 import styles from "./ruter.module.css";
 import { useEffect, useState } from "react";
 import { useSimpleFetch } from "../components/hooks/useSimpleFetch";
-import { setOption } from "./actions";
+import { setRoute, getUserRoutes, setFavorite } from "./actions";
 
 export default function RuterPage() {
   const { data, loading, error, refresh } = useSimpleFetch<{
@@ -27,37 +27,14 @@ export default function RuterPage() {
     }[];
   }>("/api/ruter");
 
-  const [lineNumber] = useState<number>(58);
-  const [station] = useState<string>("Krokstien");
-  const [direction] = useState<string>("Tveita T");
+  const [lineNumber, setLineNumber] = useState<string>("");
+  const [stationName, setStationName] = useState<string>("");
   const lineRef: string = `RUT:Line:${lineNumber}`;
 
-  async function handleAction(formData: FormData) {
-    const response = await setOption(formData);
-    if (!response.success) {
-      prompt("Invalid input on either buss or station");
-    } else {
-      prompt("Succesfull, buss and station added to user");
-    }
-  }
-
-  // async function getRoutes() {
-  //   const routes = await getUserRoutes();
-  //   if (!routes.success) {
-  //     console.log("something went wrong");
-  //   }
-  // }
-
-  //   async function getUserSetting(username: string) {
-  //     const result = await getUser(username);
-  //     if (!result.success) {
-  //       prompt("Please try again later");
-  //     } else {
-  //       setLineNumber(result.lineRef);
-  //       setStation(result.station);
-  //       setDirection(result.direction);
-  //     }
-  //   }
+  let userRoute = NaN;
+  let routeID = "";
+  let userStation = ""
+  let favorite: boolean = false
 
   useEffect(() => {
     const int = setInterval(refresh, 1000 * 1000);
@@ -68,16 +45,68 @@ export default function RuterPage() {
   }, [refresh]);
 
   useEffect(() => {
-    // const bussLines = data?.data.map((x) => x.LineRef[0]).sort();
-    const spesificBuss = data?.data.filter((x) => x.LineRef.includes(lineRef));
-    const destination =
-      spesificBuss?.[0].EstimatedCalls?.[0].EstimatedCall[1]
-        .DestinationDisplay[0];
-    console.log(spesificBuss);
-    console.log(destination);
+    userData();
+    console.log(data);
     console.log(loading);
     console.log(error);
-  }, [data, loading, error, lineRef]);
+  }, [data, loading, error]);
+
+  async function userData() {
+    const response = await getUserRoutes();
+    if (!response.success) prompt("Invalid user data");
+
+
+    userRoute = response.lineRef
+    routeID = response.routeID;
+    userStation = response.stationName
+    favorite = response.favorite
+
+  }
+
+  async function handleAction(formData: FormData) {
+    const input = {
+      lineNumber: formData.get("lineNumber") as string,
+      stationName: formData.get("stationName") as string,
+    };
+    setLineNumber(input.lineNumber);
+    setStationName(input.stationName);
+
+    const spesificBuss = data?.data.filter((x) => x.LineRef.includes(lineRef));
+    if (!spesificBuss || spesificBuss.length === 0) {
+      prompt(`Buss line ${lineNumber} does not exist`);
+      return;
+    }
+
+    let station: any | undefined = undefined;
+
+    for (const busses of spesificBuss) {
+      if (!Array.isArray(busses.EstimatedCalls)) continue;
+      for (const singleBuss of busses.EstimatedCalls) {
+        if (!Array.isArray(singleBuss.EstimatedCall)) continue;
+        const found = singleBuss.EstimatedCall.find((x) =>
+          x.StopPointName.includes(stationName)
+        );
+        if (found) {
+          station = found;
+          break;
+        }
+        if (station) break;
+      }
+    }
+
+    if (!station) {
+      prompt(`Buss station does not exist on line ${input.lineNumber}`);
+      return;
+    }
+
+    const route = await setRoute(formData);
+
+    if (!route.success) {
+      prompt("An error has occured, please try again later");
+    } else {
+      prompt("Succesfull, buss and station added to user");
+    }
+  }
 
   return (
     <div className={styles.pageContainer}>
@@ -85,11 +114,9 @@ export default function RuterPage() {
         <h1>Your monitored busses</h1>
         <div className={styles.bussContainer}>
           <p>
-            Buss: {lineNumber}
+            Buss: {userRoute}
             <br />
-            Retning: {direction}
-            <br />
-            Stopp: {station}
+            Stopp: {userStation}
           </p>
           <p>Neste buss ankommer: </p>
         </div>
@@ -102,6 +129,7 @@ export default function RuterPage() {
             placeholder="Search"
             name="lineNumber"
             list="bussLine"
+            required
           />
           <datalist id="bussLine">
             <option value="69">69 Lutvann via hellerudtoppen</option>
@@ -113,6 +141,7 @@ export default function RuterPage() {
             placeholder="Search"
             name="stationName"
             list="station"
+            required
           />
           <datalist id="station">
             <option value="Krokstien">Krokstien</option>

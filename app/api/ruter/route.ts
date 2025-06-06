@@ -23,7 +23,7 @@ type DataResponse = {
 };
 
 let storedData: unknown[] = []
-const countdown: number = 1000 * 15; // 15 seconds
+const countdown: number = 1000 * 60; // 15 seconds
 
 storeData(countdown);
 

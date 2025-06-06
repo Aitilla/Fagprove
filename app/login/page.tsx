@@ -15,7 +15,7 @@ export default function LoginPage() {
 
     switch (result.success) {
       case 1:
-        router.replace("/");
+        router.replace("/ruter");
         break;
       case 2:
         setMode("login");
