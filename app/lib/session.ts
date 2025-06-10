@@ -11,7 +11,6 @@ export async function createSession(userID: string) {
     .select();
 
   const sessionID = data?.[0].session_id;
-  console.log("sid", sessionID);
 
   if (error) throw new Error("Could not create session");
 

@@ -32,34 +32,28 @@ export async function setRoute(
 
   return { success: true };
 }
-
 export async function getUserRoutes(): Promise<{
   success: boolean;
-  lineRef: number;
-  stationName: string;
-  favorite: boolean;
-  routeID: string;
+  userRoutes: {
+    route_id: string;
+    line_ref: number;
+    monitored_station: string;
+    favorite: boolean;
+  }[];
 }> {
-
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
   if (!session)
     return {
       success: false,
-      lineRef: NaN,
-      stationName: "",
-      favorite: false,
-      routeID: "",
+      userRoutes: [],
     };
 
   const userID = await validateSession(session.value);
   if (!userID)
     return {
       success: false,
-      lineRef: NaN,
-      stationName: "",
-      favorite: false,
-      routeID: "",
+      userRoutes: [],
     };
 
   const { data: userRoutes, error } = await supabaseAdmin
@@ -71,41 +65,20 @@ export async function getUserRoutes(): Promise<{
     console.log(error);
     return {
       success: false,
-      lineRef: NaN,
-      stationName: "",
-      favorite: false,
-      routeID: "",
+      userRoutes: [],
     };
   }
-
-  const userRoute = userRoutes?.[0];
-  if (!userRoute) {
-    console.log("feil userROute");
-    return {
-      success: false,
-      lineRef: NaN,
-      stationName: "",
-      favorite: false,
-      routeID: userRoute.route_id,
-    };
-  }
-
-  console.log(userRoute);
 
   return {
     success: true,
-    lineRef: userRoute.stationName,
-    stationName: userRoute.monitored_station,
-    favorite: userRoute.favorite,
-    routeID: userRoute.route_id,
+    userRoutes: userRoutes,
   };
 }
 
-export async function setFavorite(
+export async function toggleFavorite(
   routeID: string,
   favorite: boolean
 ): Promise<{ success: boolean }> {
-  
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
   if (!session) return { success: false };

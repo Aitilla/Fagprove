@@ -1,17 +1,31 @@
-"use client"
+"use client";
+
+import { logout } from "./actions";
+import { useRouter } from "next/navigation";
+import styles from "./header.module.css";
 
 export default function Header() {
-  function handleLogout() {
-    console.log("Logout")
-    // Clear cookies. Which should also redirect you to login page
+  const router = useRouter();
+
+  async function handleLogout() {
+    const response = await logout();
+    if (!response) {
+      prompt("Unexpected error, please try again later");
+    }
+    router.replace("/ruter");
   }
+
   return (
-    <div className="header">
+    <div className={styles.header}>
+      <span></span>
+      <h2>Fagprøve</h2>
       <button
         onClick={() => {
           handleLogout();
         }}
-      >Logout</button>
+      >
+        Logout
+      </button>
     </div>
   );
 }
