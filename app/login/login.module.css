@@ -5,6 +5,14 @@
 .main{
     display: flex;
     justify-content: center;
+    button{
+      border: none;
+      background: skyblue;
+      margin: 5px 0;
+    }
+    button:hover{
+      background: aqua;
+    }
 }
 
 .signing{

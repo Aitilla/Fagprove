@@ -2,7 +2,7 @@
 
 # Intro
 
-In this project I be using everything I have learned from being an apprentice at the University of Oslo to create a mini project for my fagprøve.
+In this project I will be using everything I have learned from being an apprentice at the University of Oslo to create my fagprøve.
 
 I have been an apprentice since Aug.14th/2023 and will end my time here by Aug.13th/2025
 
@@ -14,41 +14,46 @@ This project uses node and npm, which are required to run the application
 
 I am using Nextjs as my framework
 
-I will be using entur api for my ruter applications 
-   * This is for public transport
-   // Link to be added
+I will be using entur api for my ruter applications
 
-I will be using Supabase as my database provider 
-   * This will be for authentication
-   // Link to be added
+- This is for public transport
+- [Entur](https://developer.entur.org/pages-real-time-intro)
 
-For encrypting/Hashing passwords and sessions I will be using bcrypt 
-   * An easy way of encryption and comparing for validation
-   // Link to be added
+I will be using Supabase as my database provider
 
-# How to view my project.
+- This will be for authentication
+- [Supabase](https://supabase.com/)
 
-1. Clone project
-   * I prefer cloning via ssh
+For encrypting/Hashing passwords and sessions I will be using bcrypt
 
-2. Go to root folder of the project in your preferred terminal
-    * I prefer the integrated terminal in vscode
+- An easy way of encryption and comparing for validation
+  [Bcrypt](https://www.npmjs.com/package/bcrypt)
 
-3. Write "npm i"
-   * This will install all required packages
+# How to set up
 
-5. If you have done the above and it is not working try "npm ci"
-   * "ci" stands for "clean install" this will reinstall all packages and remove possible duplicates
+1. Clone github repository
 
-6. Write "npm run dev" to start a localhost which will run this project
-   * ^^^Make sure in root folder
+2. Go to the root folder of the project in your preffered terminal
+
+3. Type: "npm i" this will install reqired packages
+
+4. You will need to create your own supabase database
+   - This have to be same setup as me. You can find this in my documentation
+
+5. Create a .env.local file in the root folder and add.
+
+   - NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
+   - NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_PUBLIC_KEY
+   - NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY=YOUR_SECRET_KEY
+
+7. Go to root in your terminal and type: "npm run dev" this will run a localhost of the project
 
 # Sources:
 
-   * Supabase documentation
-   * bcrypt -..-
-   * Entur -..-
-   * Nextjs -..-
-   * xml2js -..-
-   * Jest -..-
-   * Rubix cube as rubber ducky :D
+- Supabase documentation
+- bcrypt documentation
+- Entur documentation
+- Nextjs documentation
+- xml2js documentation
+- ChatGPT
+- Rubix cube as rubber ducky :D

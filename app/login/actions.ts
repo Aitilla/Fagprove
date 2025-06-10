@@ -21,7 +21,6 @@ export async function login(formData: FormData): Promise<{ success: number }> {
     username: formData.get("username") as string,
     password: formData.get("password") as string,
   };
-  console.log(input);
   const { data: users, error } = await supabaseAdmin
     .from("users")
     .select("*")
@@ -37,7 +36,6 @@ export async function login(formData: FormData): Promise<{ success: number }> {
 
   const isValid = await verify(input.password, user.password);
   if (!isValid) return { success: 3 };
-  console.log(isValid);
 
   const { sessionID, expiresAt } = await createSession(user.user_id);
 

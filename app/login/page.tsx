@@ -11,20 +11,17 @@ export default function LoginPage() {
 
   async function handleAction(formData: FormData) {
     const result = await auth(formData, mode);
-    console.log(result.success);
 
     switch (result.success) {
       case 1:
-        router.replace("/");
+        router.replace("/ruter");
         break;
       case 2:
         setMode("login");
         console.log("signup successful")
-        console.log(mode)
         break;
       case 3:
         prompt(`${mode} failed`);
-        console.log(`${mode} failed`);
         break;
     }
   }
@@ -35,24 +32,24 @@ export default function LoginPage() {
         <form action={handleAction}>
           {mode === "signup" && (
             <>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Epost</label>
               <input id="email" name="email" type="email" required />
             </>
           )}
 
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Brukernavn</label>
           <input id="username" name="username" type="username" required />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Passord</label>
           <input id="password" name="password" type="password" required />
 
           <button type="submit">
-            {mode === "login" ? "Log In" : "Sign Up"}
+            {mode === "login" ? "Log in" : "Lag bruker"}
           </button>
 
           <button
             onClick={() => setMode(mode === "login" ? "signup" : "login")}
           >
-            Switch to {mode === "login" ? "Sign Up" : "Log In"}
+            {mode === "login" ? "Lag bruker" : "Hvis du allerede har bruker log in her"}
           </button>
         </form>
       </div>
