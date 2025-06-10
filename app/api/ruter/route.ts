@@ -23,12 +23,12 @@ type DataResponse = {
 };
 
 let storedData: unknown[] = []
-const countdown: number = 1000 * 15; // 15 seconds
+const countdown: number = 1000 * 40; // 40 seconds
 
 storeData(countdown);
 
 function storeData(countdown: number) {
-  setInterval(async () => {
+  const fetchAndStore = () => {
     fetch(apiUrl)
       .then((res) => res.text())
       .then((res) => parseStringPromise(res) as Promise<DataResponse>)
@@ -38,7 +38,10 @@ function storeData(countdown: number) {
             .EstimatedJourneyVersionFrame[0].EstimatedVehicleJourney
       )
       .then((res) => (storedData = res));
-  }, countdown);
+  };
+
+  fetchAndStore();
+  setInterval(fetchAndStore, countdown);
 }
 
 export async function GET() {
